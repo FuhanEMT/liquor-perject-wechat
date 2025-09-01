@@ -8,6 +8,5 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
-    NutButton: typeof import('@nutui/nutui-taro')['Button']
   }
 }
