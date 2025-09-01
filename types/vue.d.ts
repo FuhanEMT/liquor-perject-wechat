@@ -6,5 +6,6 @@ declare module 'vue' {
      * 这会导致插件无法正常跳转类型，可以手动覆盖声明标签活得更好的体验，参考如下：
      * 'scroll-view': JSX.IntrinsicElements['scroll-view']
      */
+    AppHeader: any
   }
 }
