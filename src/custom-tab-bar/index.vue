@@ -11,7 +11,8 @@
   
   <script setup>
   import Taro from '@tarojs/taro'
-  import { computed , reactive,onMounted}  from 'vue'
+  import { computed , reactive}  from 'vue'
+  import { useStore } from '../store/index'
     import sy_b from '../../assets/icon/sy_b.png'
     import sy from '../../assets/icon/sy.png'
     import vote_b from '../../assets/icon/vote_b.png'
@@ -23,14 +24,8 @@
   
   const color = '#fff'
   const selectedColor = '#E2B570'
-
-  onMounted(() => {
-    state.selected = Taro.getStorageSync('selected')
-  })
-
-  const state = reactive({
-    selected: 0
-  })
+  const store = useStore()
+  
   const list = [
     {
       pagePath: '/pages/index/index',
@@ -39,33 +34,36 @@
       text: '首页'
     },
     {
-      pagePath: '/pages/vote/index',
+      pagePath: '/pages/data/index',
       selectedIconPath: vote_b,
       iconPath: vote,
       text: '作品投票'
     },
-    // {
-    //   pagePath: '/pages/cate/index',
-    //   selectedIconPath: ss_b,
-    //   iconPath: ss,
-    //   text: '赛事资料'
-    // },
-    // {
-    //   pagePath: '/pages/cate/index',
-    //   selectedIconPath: zy_b,
-    //   iconPath: zy,
-    //   text: '创作者之夜'
-    // },
+    {
+      pagePath: '/pages/data/index',
+      selectedIconPath: ss_b,
+      iconPath: ss,
+      text: '赛事资料'
+    },
+    {
+      pagePath: '/pages/data/index',
+      selectedIconPath: zy_b,
+      iconPath: zy,
+      text: '创作者之夜'
+    },
   ]
   
   function switchTab(index, url) {
-    Taro.setStorageSync('selected', index)
+    store.selected = index
+    console.log(store.selected)
     Taro.switchTab({ url })
   }
   
   function setSelected (index) {
     state.selected = index
   }
+
+  const selected = computed(() => store.selected)
   </script>
   
   <style lang="scss">
@@ -75,7 +73,7 @@
     left: 0;
     right: 0;
     height: 100px;
-    background: linear-gradient(180deg, #3488D1 0%, #0E57A3 100%);
+    background: #0E57A3;
     display: flex;
     padding-bottom: env(safe-area-inset-bottom);
     border-radius: 20px 20px 0 0;

@@ -7,32 +7,12 @@
         <image class="banner-bg" src="../../../assets/img/bar.png" mode="aspectFill" />
       </view>
 
-      <view class="vote-list">
-        <view class="vote-item" @click="selectItem(0)">
-          <image class="vote-bg" :src="selectedIndex === 0 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
-          <view class="vote-content">
-            <view class="vote-title">参赛作品 1</view>
-            <view class="vote-info">投票数: 1234</view>
-          </view>
-        </view>
-        
-        <view class="vote-item" @click="selectItem(1)">
-          <image class="vote-bg" :src="selectedIndex === 1 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
-          <view class="vote-content">
-            <view class="vote-title">参赛作品 2</view>
-            <view class="vote-info">投票数: 2345</view>
-          </view>
-        </view>
-        
-        <view class="vote-item" @click="selectItem(2)">
-          <image class="vote-bg" :src="selectedIndex === 2 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
-          <view class="vote-content">
-            <view class="vote-title">参赛作品 3</view>
-            <view class="vote-info">投票数: 3456</view>
-          </view>
-        </view>
+      <view class="bg">
+        <view style="color: #2A5DB0;text-align: center;
+    padding-top: 450rpx;">10.25开启，敬请期待~</view>
       </view>
 
+     
     </view>
   </view>
 </template>
@@ -42,6 +22,12 @@
 </script>
 
 <style lang="scss">
+.bg{
+  width: 100%;
+  height: 1250rpx;
+  background: linear-gradient(180deg, #DCEDFF 0%, rgba(220, 237, 255, 0.30) 100%) , url(../../../assets/img/footer.webp) no-repeat center/cover;
+  position: relative;
+}
 .vote-list{
   background: #135690;
   padding: 20rpx;

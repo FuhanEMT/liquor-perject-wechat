@@ -86,9 +86,6 @@ headerRpx.value = headerHeight.value * 2
     height: 28px;
     padding: 0 10px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.25);
-    display: flex;
-    align-items: center;
 
     .dot {
       width: 6px;

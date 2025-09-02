@@ -3,7 +3,8 @@
 export default {
   pages: [
     "pages/index/index",
-    "pages/vote/index"
+    "pages/vote/index",
+    "pages/data/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -15,7 +16,7 @@ export default {
   tabBar:{
     custom: true,
     color: "#000",
-    selectedColor: "#000",
+    selectedColor: "#E57A3",
     backgroundColor: "#0E57A3",
     list: [
       {
@@ -25,7 +26,11 @@ export default {
       {
         pagePath: "pages/vote/index",
         text: "投票"
-      }
+      },
+      {
+        pagePath: "pages/data/index",
+        text: "赛事资料"
+      },
     ],
   }
 }

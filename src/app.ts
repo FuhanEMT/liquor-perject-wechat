@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
 import './app.scss'
 import AppHeader from './components/AppHeader.vue'
@@ -10,5 +11,5 @@ const App = createApp({
 })
 
 App.component('AppHeader', AppHeader)
-
+App.use(createPinia())
 export default App

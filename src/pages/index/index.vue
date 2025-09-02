@@ -30,7 +30,7 @@
           </view>
           <view class="stats-card__upload">
             <view class="upload-btn">
-              <text class="upload-icon">⬆︎</text>
+              <image style="width: 30rpx;height: 30rpx;margin-right: 20rpx;" src="../../../assets/icon/upload.png" mode="aspectFit" />
               <text class="upload-text">上传作品</text>
             </view>
             <text class="deadline">(截止于:2025年9月29日 00:00)</text>
@@ -74,19 +74,42 @@
 
               <image class="timeline-arrow-vertical" src="../../../assets/icon/jt.png" mode="aspectFit" />
 
-              <view class="timeline-item" style="margin-top: 16px;">
-                <text class="timeline-stage">奖项公布</text>
-                <text class="timeline-year">2025</text>
-                <text class="timeline-date">10.16 - 10.20</text>
-              </view>
-
-              <image class="timeline-arrow timeline-arrow-down" src="../../../assets/icon/jt.png" mode="aspectFit" />
+              
 
               <view class="timeline-item" style="margin-top: 16px;">
                 <text class="timeline-stage">颁奖</text>
                 <text class="timeline-year">2025</text>
                 <text class="timeline-date">10.25</text>
               </view>
+
+              <image class="timeline-arrow timeline-arrow-down" src="../../../assets/icon/jt.png" mode="aspectFit" />
+
+              <view class="timeline-item" style="margin-top: 16px;">
+                <text class="timeline-stage">奖项公布</text>
+                <text class="timeline-year">2025</text>
+                <text class="timeline-date">10.16 - 10.20</text>
+              </view>
+            </view>
+
+            <view @click="toggleVideoPlay" style="width: 100%;height: 350rpx;border-radius: 10px;background: #fff;position: relative;
+    top: 11px;border: 10rpx solid rgba(19, 86, 144, 0.37);margin-top: 15rpx;">
+              <video 
+                id="videoRef"
+                src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                poster="https://media.w3.org/2010/05/sintel/poster.png"
+                style="width: 100%; height: 100%; border-radius: 5px;"
+                initial-time="0"
+                :controls="false"
+                :autoplay="false"
+                :loop="false"
+                :muted="false"
+                :show-play-btn="false"
+                :show-center-play-btn="false"
+                :show-fullscreen-btn="false"
+                :enable-progress-gesture="false"
+              ></video>
+
+              <image v-if="!videStatus" style="width: 55rpx;height: 55rpx;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);z-index: 9990;" class="play-btn" src="../../../assets/icon/bf.png" mode="aspectFit" />
             </view>
           </view>
         </view>
@@ -243,7 +266,7 @@
         </view>
 
         <view class="award-footer">
-          <text class="award-rules">
+          <text class="award-rules" style="text-align: left;color: #819FBE;">
             光影创作人每件作品只能获得一个奖项,按照荣誉奖、主题奖、优秀奖及最佳传播奖从上至下的优先级进行获奖,确保评选的公平性与参与度。
           </text>
           <view class="award-link">
@@ -360,6 +383,24 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import Taro from '@tarojs/taro'
+
+const videStatus = ref(false)
+
+const toggleVideoPlay = () => {
+  console.log(1)
+  const videoContext = Taro.createVideoContext('videoRef')
+  if(!videStatus.value) {
+    videoContext.play()
+    videStatus.value = true
+  } else {
+    videoContext.pause()
+    videStatus.value = false
+  }
+  
+}
+
 </script>
 
 <style lang="scss">
@@ -531,7 +572,7 @@
 
   .announcement-section {
     background: #DCEDFF;
-    padding: 40rpx 30rpx;
+    padding: 40rpx 30rpx 0 30rpx;
     position: relative;
 
     .announcement-card {
@@ -633,7 +674,7 @@
           .timeline-arrow-vertical {
             position: absolute;
             right: 122rpx;
-            top: 47%;
+            top: 25%;
             width: 24rpx;
             height: 24rpx;
             transform: rotate(90deg);
@@ -695,7 +736,7 @@
 }
 
 .theme-section {
-  background: url(../../../assets/img/bg3.png);
+  background: url(../../../assets/img/bg3.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -798,7 +839,7 @@
       padding: 20rpx 20rpx;
       background: #C9E1FA;
       border-bottom: 2rpx solid #e0e0e0;
-
+      border: 1px solid #AFCBE8;
       .header-tier {
         flex: 1;
         font-size: 28rpx;
@@ -837,7 +878,8 @@
         display: flex;
         align-items: center;
         height: 100px;
-
+        border-right: 1rpx solid #AFCBE8;
+    padding-right: 20rpx;
         &:last-child {
           border-bottom: none;
         }
@@ -850,6 +892,7 @@
           text-align: left;
           padding: 90rpx 20rpx;
           border-right: 1rpx solid #AFCBE8;
+          border-left: 1rpx solid #AFCBE8;
         }
 
         .blue {
@@ -1078,8 +1121,8 @@
 }
 
 .partners-section {
-  background: url(../../../assets/icon/footer.png) no-repeat center/cover;
-  padding: 40rpx 30rpx 80rpx;
+  background: linear-gradient(180deg, #DCEDFF 0%, rgba(220, 237, 255, 0.10) 100%) , url(../../../assets/img/footer.webp) no-repeat center/cover;
+  padding: 40rpx 30rpx 150rpx 30rpx;
 
   .partner-row {
     display: flex;
