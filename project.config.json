@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "liquor-perject-wechat",
   "description": "baijiu",
-  "appid": "wx22302f83470a1c94",
+  "appid": "wxabc73ab34e90c288",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -16,7 +16,7 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "minifyWXML": true,
+    "minifyWXML": false,
     "localPlugins": false,
     "disableUseStrict": false,
     "useCompilerPlugins": false,
