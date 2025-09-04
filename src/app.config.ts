@@ -5,6 +5,7 @@ export default {
     "pages/index/index",
     "pages/vote/index",
     "pages/data/index",
+    "pages/night/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -30,6 +31,10 @@ export default {
       {
         pagePath: "pages/data/index",
         text: "赛事资料"
+      },
+      {
+        pagePath: "pages/night/index",
+        text: "创作者之夜"
       },
     ],
   }

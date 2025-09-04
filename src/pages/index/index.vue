@@ -109,7 +109,7 @@
                 :enable-progress-gesture="false"
               ></video>
 
-              <image v-if="!videStatus" style="width: 55rpx;height: 55rpx;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);z-index: 9990;" class="play-btn" src="../../../assets/icon/bf.png" mode="aspectFit" />
+              <image v-if="!videStatus" style="width: 55rpx;height: 55rpx;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);z-index: 2;" class="play-btn" src="../../../assets/icon/bf.png" mode="aspectFit" />
             </view>
           </view>
         </view>

@@ -9,26 +9,66 @@
 
       <view class="vote-list">
         <view class="vote-item" @click="selectItem(0)">
-          <image class="vote-bg" :src="selectedIndex === 0 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
+          <image :class="selectedIndex === 0 ? 'vote-bg' : 'vote-bg opacity-07'" :src="selectedIndex === 0 ? xxBPng : xxPng" mode="scaleToFill" />
           <view class="vote-content">
-            <view class="vote-title">参赛作品 1</view>
-            <view class="vote-info">投票数: 1234</view>
+            <view class="vote-title">参赛作品</view>
+            <view class="vote-info">1234</view>
           </view>
         </view>
         
         <view class="vote-item" @click="selectItem(1)">
-          <image class="vote-bg" :src="selectedIndex === 1 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
+          <image :class="selectedIndex === 1 ? 'vote-bg' : 'vote-bg opacity-07'" :src="selectedIndex === 1 ? xxBPng : xxPng" mode="scaleToFill" />
           <view class="vote-content">
-            <view class="vote-title">参赛作品 2</view>
-            <view class="vote-info">投票数: 2345</view>
+            <view class="vote-title">投票排行</view>
+            <view class="vote-info">2345</view>
           </view>
         </view>
         
         <view class="vote-item" @click="selectItem(2)">
-          <image class="vote-bg" :src="selectedIndex === 2 ? '../../../assets/icon/xx_b.png' : '../../../assets/icon/xx.png'" mode="scaleToFill" />
+          <image :class="selectedIndex === 2 ? 'vote-bg' : 'vote-bg opacity-07'" :src="selectedIndex === 2 ? xxBPng : xxPng" mode="scaleToFill" />
           <view class="vote-content">
-            <view class="vote-title">参赛作品 3</view>
-            <view class="vote-info">投票数: 3456</view>
+            <view class="vote-title">特邀作品</view>
+            <view class="vote-info">3456</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="vote-content_content">
+        <!-- 搜索栏 -->
+        <view class="search-container">
+          <view class="search-bar">
+            <image class="search-icon" :src="searchPng" mode="aspectFit" />
+            <input class="search-input" placeholder="请输入作品编号或名称" />
+            <image class="clear-icon" src="../../../assets/icon/close.webp" mode="aspectFit" />
+          </view>
+        </view>
+
+        <!-- 作品卡片区域 -->
+        <view class="works-container">
+          <view class="work-card">
+            <image class="work-image" src="https://picsum.photos/400/300?random=1" mode="aspectFill" />
+            <view class="vote-badge">1254<text style="font-size: 21rpx;" class="vote-badge_text">票</text></view>
+            <view class="work-id-overlay">作品编号: xj20250912130</view>
+            <view class="work-info">
+              <view class="work-name">作品名称作品名称作品名</view>
+              <view class="work-heat">
+                <image class="heat-icon" src="../../../assets/icon/huo.webp" mode="aspectFit" />
+                <text class="heat-text_num">200热度</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="work-card">
+            <image class="work-image" src="https://picsum.photos/400/300?random=2" mode="aspectFill" />
+            <view class="vote-badge">1254<text style="font-size: 21rpx;" class="vote-badge_text">票</text></view>
+            <view class="work-id-overlay">作品编号: xj20250912130</view>
+            <view class="work-info">
+              <view class="work-name">作品名称作品名称作品</view>
+              <view class="work-heat">
+                <image class="heat-icon" src="../../../assets/icon/huo.webp" />
+                <text class="heat-text_num">200热度</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>
@@ -38,7 +78,16 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import xxPng from '../../../assets/icon/xx.png'
+import xxBPng from '../../../assets/icon/xx_b.png'
+import searchPng from '../../../assets/icon/search.webp'
 
+const selectedIndex = ref(0)
+
+const selectItem = (index) => {
+  selectedIndex.value = index
+}
 </script>
 
 <style lang="scss">
@@ -64,11 +113,15 @@
       z-index: 1;
     }
     
+    .opacity-07 {
+      opacity: 0.7;
+    }
+    
     .vote-content {
       position: relative;
       z-index: 2;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
       align-items: center;
       height: 100%;
@@ -76,19 +129,16 @@
       
       .vote-title {
         font-size: 24rpx;
-        color: #ffffff;
+        color: #1E507E;
         font-weight: bold;
-        margin-bottom: 5rpx;
-        text-shadow: 1rpx 1rpx 2rpx rgba(0, 0, 0, 0.5);
+        margin-right: 10rpx;
         text-align: center;
         line-height: 1.2;
       }
       
       .vote-info {
-        font-size: 18rpx;
-        color: #ffffff;
-        opacity: 0.9;
-        text-shadow: 1rpx 1rpx 2rpx rgba(0, 0, 0, 0.5);
+        font-size: 20rpx;
+        color: #1E507E;
         text-align: center;
       }
     }
@@ -162,6 +212,119 @@
             font-size: 20rpx;
             color: #ffffff;
             opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+}
+
+.vote-content_content {
+  background: linear-gradient(180deg, #DCEDFF 0%, rgba(220, 237, 255, 0.10) 100%) , url(../../../assets/img/footer.webp) no-repeat center/cover;
+  height: calc(100vh - 300rpx - 100rpx); // 整个页面高度 - banner高度 - vote-list高度
+  padding: 20rpx;
+  position: relative;
+  overflow-y: auto;
+
+  .search-container {
+    margin-bottom: 25rpx;
+    
+    .search-bar {
+      background: #ffffff;
+      border-radius: 80rpx;
+      padding: 8rpx 30rpx;
+      display: flex;
+      align-items: center;
+      
+      .search-icon {
+        width: 32rpx;
+        height: 32rpx;
+        margin-right: 13rpx;
+      }
+      
+      .search-input {
+        flex: 1;
+        font-size: 28rpx;
+        color: #333;
+        border: none;
+        outline: none;
+      }
+      
+      .clear-icon {
+        width: 35rpx;
+        height: 35rpx;
+        margin-left: 20rpx;
+      }
+    }
+  }
+
+  .works-container {
+    display: flex;
+    gap: 20rpx;
+    
+    .work-card {
+      flex: 1;
+      border-radius: 10rpx;
+      overflow: hidden;
+      position: relative;
+      
+      .work-image {
+        width: 100%;
+        height: 588.94rpx;
+        object-fit: cover;
+        display: block;
+        vertical-align: top;
+      }
+      
+      .vote-badge {
+        position: absolute;
+        top: 20rpx;
+        right: 0rpx;
+        background: linear-gradient(180deg, #D9B560 0%, #DAAE6B 100%);
+        color: #ffffff;
+        padding: 8rpx 20rpx;
+        border-radius: 30rpx 0 0 30rpx;
+        font-size: 24rpx;
+        font-weight: 400;
+        z-index: 3;
+      }
+      
+      .work-id-overlay {
+        position: absolute;
+        bottom: 107rpx;
+        left: 0;
+        right: 0;
+        color: #ffffff;
+        padding: 10rpx 20rpx 10rpx 20rpx;
+        font-size: 24rpx;
+        z-index: 2;
+        background: #042D58;
+        opacity: 0.8;
+      }
+      
+      .work-info {
+        padding: 15rpx 0;
+        margin-top: 0;
+        
+        .work-name {
+          font-size: 30rpx;
+          margin-bottom: 12rpx;
+          line-height: 1.3;
+          font-weight: 400;
+        }
+        
+        .work-heat {
+          display: flex;
+          align-items: center;
+          font-size: 24rpx;
+          .heat-text_num {
+            font-size: 22rpx;
+            color:#DB9C3D;
+          }
+          .heat-icon {
+            width: 24rpx;
+            height: 24rpx;
+            margin-right: 8rpx;
           }
         }
       }

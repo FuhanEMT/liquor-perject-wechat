@@ -34,7 +34,7 @@
       text: '首页'
     },
     {
-      pagePath: '/pages/data/index',
+      pagePath: '/pages/vote/index',
       selectedIconPath: vote_b,
       iconPath: vote,
       text: '作品投票'
@@ -46,7 +46,7 @@
       text: '赛事资料'
     },
     {
-      pagePath: '/pages/data/index',
+      pagePath: '/pages/night/index',
       selectedIconPath: zy_b,
       iconPath: zy,
       text: '创作者之夜'
