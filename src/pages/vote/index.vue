@@ -38,35 +38,27 @@
         <view class="search-container">
           <view class="search-bar">
             <image class="search-icon" :src="searchPng" mode="aspectFit" />
-            <input class="search-input" placeholder="请输入作品编号或名称" />
-            <image class="clear-icon" src="../../../assets/icon/close.webp" mode="aspectFit" />
+            <input class="search-input" placeholder="请输入作品编号或名称" v-model="searchKeyword" @input="handleSearch" />
+            <image class="clear-icon" src="../../../assets/icon/close.webp" mode="aspectFit" @click="clearSearch" />
           </view>
         </view>
 
         <!-- 作品卡片区域 -->
         <view class="works-container">
-          <view class="work-card">
-            <image class="work-image" src="https://picsum.photos/400/300?random=1" mode="aspectFill" />
-            <view class="vote-badge">1254<text style="font-size: 21rpx;" class="vote-badge_text">票</text></view>
-            <view class="work-id-overlay">作品编号: xj20250912130</view>
+          <view 
+            class="work-card" 
+            v-for="work in filteredWorks" 
+            :key="work.id"
+            @click="goToVideoDetail(work.id)"
+          >
+            <image class="work-image" :src="work.imageUrl" mode="aspectFill" />
+            <view class="vote-badge">{{ work.voteCount }}<text style="font-size: 21rpx;" class="vote-badge_text">票</text></view>
+            <view class="work-id-overlay">作品编号: {{ work.workId }}</view>
             <view class="work-info">
-              <view class="work-name">作品名称作品名称作品名</view>
+              <view class="work-name">{{ work.title }}</view>
               <view class="work-heat">
                 <image class="heat-icon" src="../../../assets/icon/huo.webp" mode="aspectFit" />
-                <text class="heat-text_num">200热度</text>
-              </view>
-            </view>
-          </view>
-
-          <view class="work-card">
-            <image class="work-image" src="https://picsum.photos/400/300?random=2" mode="aspectFill" />
-            <view class="vote-badge">1254<text style="font-size: 21rpx;" class="vote-badge_text">票</text></view>
-            <view class="work-id-overlay">作品编号: xj20250912130</view>
-            <view class="work-info">
-              <view class="work-name">作品名称作品名称作品</view>
-              <view class="work-heat">
-                <image class="heat-icon" src="../../../assets/icon/huo.webp" />
-                <text class="heat-text_num">200热度</text>
+                <text class="heat-text_num">{{ work.heatCount }}热度</text>
               </view>
             </view>
           </view>
@@ -78,16 +70,87 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import Taro from '@tarojs/taro'
 import xxPng from '../../../assets/icon/xx.png'
 import xxBPng from '../../../assets/icon/xx_b.png'
 import searchPng from '../../../assets/icon/search.webp'
 
 const selectedIndex = ref(0)
+const searchKeyword = ref('')
+
+// 作品数据
+const works = ref([
+  {
+    id: '1',
+    title: '作品名称作品名称作品名',
+    workId: 'xj20250912130',
+    imageUrl: 'https://picsum.photos/400/300?random=1',
+    voteCount: 1254,
+    heatCount: 200,
+    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
+  },
+  {
+    id: '2',
+    title: '作品名称作品名称作品',
+    workId: 'xj20250912131',
+    imageUrl: 'https://picsum.photos/400/300?random=2',
+    voteCount: 1254,
+    heatCount: 200,
+    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4'
+  },
+  {
+    id: '3',
+    title: '创意作品展示',
+    workId: 'xj20250912132',
+    imageUrl: 'https://picsum.photos/400/300?random=3',
+    voteCount: 980,
+    heatCount: 150,
+    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_3mb.mp4'
+  },
+  {
+    id: '4',
+    title: '优秀参赛作品',
+    workId: 'xj20250912133',
+    imageUrl: 'https://picsum.photos/400/300?random=4',
+    voteCount: 2100,
+    heatCount: 350,
+    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_4mb.mp4'
+  }
+])
+
+// 过滤后的作品列表
+const filteredWorks = computed(() => {
+  if (!searchKeyword.value) {
+    return works.value
+  }
+  return works.value.filter(work => 
+    work.title.includes(searchKeyword.value) || 
+    work.workId.includes(searchKeyword.value)
+  )
+})
 
 const selectItem = (index) => {
   selectedIndex.value = index
 }
+
+const handleSearch = () => {
+  // 搜索逻辑已在computed中处理
+}
+
+const clearSearch = () => {
+  searchKeyword.value = ''
+}
+
+const goToVideoDetail = (workId) => {
+  Taro.navigateTo({
+    url: `/pages/video-detail/index?id=${workId}`
+  })
+}
+
+onMounted(() => {
+  // 可以在这里加载更多作品数据
+})
 </script>
 
 <style lang="scss">
@@ -254,6 +317,7 @@ const selectItem = (index) => {
         width: 35rpx;
         height: 35rpx;
         margin-left: 20rpx;
+        cursor: pointer;
       }
     }
   }
@@ -261,12 +325,20 @@ const selectItem = (index) => {
   .works-container {
     display: flex;
     gap: 20rpx;
+    flex-wrap: wrap;
     
     .work-card {
       flex: 1;
+      min-width: 300rpx;
       border-radius: 10rpx;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      
+      &:hover {
+        transform: translateY(-2rpx);
+      }
       
       .work-image {
         width: 100%;

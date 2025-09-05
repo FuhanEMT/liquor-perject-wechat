@@ -1,8 +1,8 @@
 {
-  "libVersion": "3.9.3",
+  "libVersion": "3.9.2",
   "projectname": "liquor-perject-wechat",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "coverView": false,
     "lazyloadPlaceholderEnable": false,
     "skylineRenderEnable": false,
@@ -19,5 +19,18 @@
     "ignoreDevUnusedFiles": true,
     "bigPackageSizeSupport": true
   },
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  "description": "",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/video-detail/index",
+          "pathName": "pages/video-detail/index",
+          "query": "id=1",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
+    }
+  }
 }

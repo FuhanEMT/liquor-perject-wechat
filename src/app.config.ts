@@ -1,12 +1,10 @@
-
-
 export default {
   pages: [
     "pages/index/index",
     "pages/vote/index",
-    "pages/data/index",
     "pages/night/index",
     "pages/materials/index",
+    "pages/video-detail/index",
   ],
   window: {
     backgroundTextStyle: "light",
