@@ -12,7 +12,7 @@
         <view class="top-nav">
           
           <!-- 右侧下载按钮 -->
-          <view class="download-btn">
+          <view class="download-btn" @click="goToMaterials">
             <image class="download-icon" src="../../../assets/icon/download.webp" mode="aspectFit" />
             <text class="download-text">下载大赛手册</text>
           </view>
@@ -293,6 +293,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import Taro from '@tarojs/taro'
 
 const sidebarOpen = ref(false)
 
@@ -335,6 +336,10 @@ const getSectionName = (sectionId) => {
     'contact': '联系我们'
   }
   return sectionNames[sectionId] || '未知章节'
+}
+
+const goToMaterials = () => {
+
 }
 </script>
 

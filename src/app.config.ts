@@ -6,6 +6,7 @@ export default {
     "pages/vote/index",
     "pages/data/index",
     "pages/night/index",
+    "pages/materials/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -29,7 +30,7 @@ export default {
         text: "投票"
       },
       {
-        pagePath: "pages/data/index",
+        pagePath: "pages/materials/index",
         text: "赛事资料"
       },
       {

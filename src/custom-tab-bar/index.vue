@@ -40,7 +40,7 @@
       text: '作品投票'
     },
     {
-      pagePath: '/pages/data/index',
+      pagePath: '/pages/materials/index',
       selectedIconPath: ss_b,
       iconPath: ss,
       text: '赛事资料'
