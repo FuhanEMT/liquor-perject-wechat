@@ -13,7 +13,8 @@
 
           <!-- 右侧下载按钮 -->
           <view class="download-btn">
-            <image class="download-icon" src="../../../assets/icon/download.webp" mode="aspectFit" />
+            <!-- <image class="download-icon" src="../../../assets/icon/download.webp" mode="aspectFit" /> -->
+            <view class="download-icon"></view>
             <text class="download-text">资料下载</text>
           </view>
         </view>
@@ -77,27 +78,32 @@
               <text class="section-title">五、参赛主题</text>
               <text class="section-content bold-number">3 五大拍摄主题及脚本示意</text>
               <text class="section-content bold-italic">3.1【传承】非遗 / 习俗 / 美食 — 敬烟火里的老味道</text>
-              <image class="theme-image" src="../../../assets/img/wdbg1.webp" mode="aspectFit" />
+              <!-- <image class="theme-image" src="../../../assets/img/wdbg1.webp" mode="aspectFit" /> -->
+              <view class="theme-image-wdbg1"></view>
               <text class="section-content">▪ 家庭月饼制作：从和面、包馅、印花到出炉，手部特写+慢动作，搭配锅中油炸或烤箱开门的"出炉瞬间"。</text>
               <text class="section-content">▪ 非遗匠人故事：拍老街里做灯笼、雕花饼模、捏糖人的师傅，配人物采访或配音旁白，记录手艺背后的情感。</text>
               <text class="section-content">▪ 厨房烟火：节日前夜，长辈们在厨房忙碌的场景，光线昏黄、蒸汽氤氲，营造温暖感。</text>
               <text class="section-content bold-italic">3.2【叙事】剧情 / 短剧 / 家庭故事 — 敬家国的小团圆</text>
-              <image class="theme-image" src="../../../assets/img/wdbg2.webp" mode="aspectFit" />
+              <!-- <image class="theme-image" src="../../../assets/img/wdbg2.webp" mode="aspectFit" /> -->
+              <view class="theme-image-wdbg2"></view>
               <text class="section-content">▪ 归途纪实：用手机拍自己回家的火车/飞机/汽车路上，镜头从车窗到家门，从脚步到拥抱，配温情配乐。</text>
               <text class="section-content">▪ 跨屏团圆：家人在不同城市，通过视频通话一起赏月、举杯，把画面拼成多分屏的形式。</text>
               <text class="section-content">▪ 微短剧：讲完一个中秋故事，例如外地打工人赶回家、邻里之间的中秋互助、宠物与主人团圆等。</text>
               <text class="section-content bold-italic">3.3【风物】旅行 / 风光 / 城市生活 — 敬眼中的万里山河</text>
-              <image class="theme-image" src="../../../assets/img/wdbg3.webp" mode="aspectFit" />
+              <!-- <image class="theme-image" src="../../../assets/img/wdbg3.webp" mode="aspectFit" /> -->
+              <view class="theme-image-wdbg3"></view>
               <text class="section-content">▪ 月下古城：航拍古城灯火与满月，慢慢推进到街头的人群与节日表演。</text>
               <text class="section-content">▪ 城市夜景：拍城市高楼间的月亮，或节日广场上的花灯游人，使用延时摄影展现夜色变化。</text>
               <text class="section-content">▪ 节日市集：镜头跟随一个小吃摊，从摆摊到顾客排队，特写食物、顾客表情、灯笼和月色。</text>
               <text class="section-content bold-italic">3.4【人文】科普 / 历史 / 地域文化 — 敬时光里的家国故事</text>
-              <image class="theme-image" src="../../../assets/img/wdbg4.webp" mode="aspectFit" />
+              <!-- <image class="theme-image" src="../../../assets/img/wdbg4.webp" mode="aspectFit" /> -->
+              <view class="theme-image-wdbg4"></view>
               <text class="section-content">▪ 中秋典故动画化：用动画或剪纸还原"嫦娥奔月""吴刚伐桂"等传说。</text>
               <text class="section-content">▪ 地方节庆纪录：记录当地独特的中秋习俗，比如"烧塔""走月亮""放河灯"，配解说文字和当地方言。</text>
               <text class="section-content">▪ 历史遗迹探访：走进与中秋有关的古迹（祠堂、牌坊、古桥），结合历史故事讲述它与节日的联系。</text>
               <text class="section-content bold-italic">3.5【创意】创意 / 音乐 / 动画 / AI — 敬美好生活的创意表达</text>
-              <image class="theme-image" src="../../../assets/img/wdbg5.webp" mode="aspectFit" />
+              <!-- <image class="theme-image" src="../../../assets/img/wdbg5.webp" mode="aspectFit" /> -->
+              <view class="theme-image-wdbg5"></view>
               <text class="section-content">▪ 音乐改编：用中秋相关歌词或旋律创作/改编一首歌，边唱边展示节日场景。</text>
               <text class="section-content">▪ AI创作：用AI生成穿越古今的"中秋团圆"画面，把古人和现代人放在同一个月下。</text>
               <text class="section-content">▪ 视觉特效：用转场或合成，让月亮"掉进"酒杯里，或从窗外"走进"客厅餐桌。</text>
@@ -670,7 +676,8 @@
     
     <!-- 左侧固定悬浮目录按钮 -->
     <view class="floating-menu" @click="toggleMenu">
-      <image class="floating-menu-icon" src="../../../assets/icon/menu.webp" mode="aspectFit" />
+      <!-- <image class="floating-menu-icon" src="../../../assets/icon/menu.webp" mode="aspectFit" /> -->
+      <view class="floating-menu-icon"></view>
       <text class="floating-menu-text">目录</text>
     </view>
     
@@ -701,23 +708,24 @@
 
 <script setup>
 import { ref } from 'vue'
+import Taro from '@tarojs/taro'
 
 // 弹窗状态管理
 const showMenu = ref(false)
 
 // 目录列表
 const menuItems = [
-  { id: 'overview', title: '一、大赛综述' },
-  { id: 'theme', title: '二、大赛主题' },
-  { id: 'time', title: '三、活动时间' },
-  { id: 'participants', title: '四、参赛对象' },
-  { id: 'topics', title: '五、参赛主题' },
-  { id: 'tools', title: '六、创作辅助工具包' },
-  { id: 'specs', title: '七、作品规范' },
-  { id: 'rewards', title: '八、参赛奖励' },
-  { id: 'participation', title: '九、参赛方式' },
-  { id: 'evaluation', title: '十、评奖规则' },
-  { id: 'legal', title: '十一、法律与版权' }
+  { id: '#overview', title: '一、大赛综述' },
+  { id: '#theme', title: '二、大赛主题' },
+  { id: '#time', title: '三、活动时间' },
+  { id: '#participants', title: '四、参赛对象' },
+  { id: '#topics', title: '五、参赛主题' },
+  { id: '#tools', title: '六、创作辅助工具包' },
+  { id: '#specs', title: '七、作品规范' },
+  { id: '#rewards', title: '八、参赛奖励' },
+  { id: '#participation', title: '九、参赛方式' },
+  { id: '#evaluation', title: '十、评奖规则' },
+  { id: '#legal', title: '十一、法律与版权' }
 ]
 
 // 当前选中的菜单项
@@ -737,11 +745,45 @@ const closeMenu = () => {
 const selectMenuItem = (item) => {
   activeItem.value = item.id
   closeMenu()
+  const query = Taro.createSelectorQuery()
+  query.select(item.id).boundingClientRect()
+  query.selectViewport().scrollOffset()
+  query.exec((res) => {
+    Taro.pageScrollTo({
+      scrollTop: res[0].top + res[1].scrollTop - 320,
+      duration: 300
+    })
+  })
   // 这里可以添加滚动到对应章节的逻辑
 }
 </script>
 
 <style lang="scss">
+.theme-image-wdbg1{
+  width: 100%;
+  height: 90rpx;
+  background: url(../../../assets/img/wdbg1.webp) no-repeat center/cover;
+}
+.theme-image-wdbg2{
+  width: 100%;
+  height: 90rpx;
+  background: url(../../../assets/img/wdbg2.webp) no-repeat center/cover;
+}
+.theme-image-wdbg3{
+  width: 100%;
+  height: 90rpx;
+  background: url(../../../assets/img/wdbg3.webp) no-repeat center/cover;
+}
+.theme-image-wdbg4{
+  width: 100%;
+  height: 90rpx;
+  background: url(../../../assets/img/wdbg4.webp) no-repeat center/cover;
+} 
+.theme-image-wdbg5{
+  width: 100%;
+  height: 90rpx;
+  background: url(../../../assets/img/wdbg5.webp) no-repeat center/cover;
+}
 .bg {
   width: 100%;
   background: linear-gradient(180deg, #DCEDFF 0%, rgba(220, 237, 255, 0.10) 100%), url(../../../assets/img/footer.webp) no-repeat center/cover;
@@ -759,11 +801,6 @@ const selectMenuItem = (item) => {
     display: flex;
     align-items: center;
 
-    .download-icon {
-      width: 24rpx;
-      height: 24rpx;
-      margin-right: 8rpx;
-    }
 
     .download-text {
       font-size: 28rpx;
@@ -799,6 +836,12 @@ const selectMenuItem = (item) => {
       font-weight: 600;
     }
   }
+}
+.download-icon{
+  width: 22rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  background: url(../../../assets/icon/download.webp) no-repeat center/cover;
 }
 
 .index {
@@ -1083,10 +1126,11 @@ const selectMenuItem = (item) => {
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
   z-index: 1000;
   
-  .floating-menu-icon {
+  .floating-menu-icon{
     width: 25rpx;
     height: 25rpx;
     margin-right: 8rpx;
+    background: url(../../../assets/icon/menu.webp) no-repeat center/cover;
   }
   
   .floating-menu-text {
@@ -1163,8 +1207,9 @@ const selectMenuItem = (item) => {
 
 .menu-content {
   padding: 20rpx 0;
-  max-height: 60vh;
-  overflow-y: auto;
+    max-height: 800rpx;
+    overflow-y: auto;
+    padding-bottom: 165rpx;
 }
 
 .menu-item {

@@ -1,7 +1,7 @@
 <template>
-  <view>
+  <view class="page-container">
     <AppHeader />
-    <view class="index" style="position: relative;top: -1px;">
+    <view class="index">
       <!-- 顶部横幅 -->
       <view class="banner">
         <image class="banner-bg" src="../../../assets/img/bar.png" mode="aspectFill" />
@@ -37,9 +37,10 @@
         <!-- 搜索栏 -->
         <view class="search-container">
           <view class="search-bar">
-            <image class="search-icon" :src="searchPng" mode="aspectFit" />
+             <view class="search"></view>
             <input class="search-input" placeholder="请输入作品编号或名称" v-model="searchKeyword" @input="handleSearch" />
-            <image class="clear-icon" src="../../../assets/icon/close.webp" mode="aspectFit" @click="clearSearch" />
+            <!-- <image class="clear-icon" src="../../../assets/icon/close.webp" webp="true" mode="scaleToFill" @click="clearSearch" /> -->
+            <view class="clear"></view>
           </view>
         </view>
 
@@ -57,14 +58,14 @@
             <view class="work-info">
               <view class="work-name">{{ work.title }}</view>
               <view class="work-heat">
-                <image class="heat-icon" src="../../../assets/icon/huo.webp" mode="aspectFit" />
+                <!-- <image class="heat-icon" src="../../../assets/icon/huo.webp" mode="aspectFit" /> -->
+                <view class="huo"></view>
                 <text class="heat-text_num">{{ work.heatCount }}热度</text>
               </view>
             </view>
           </view>
         </view>
       </view>
-
     </view>
   </view>
 </template>
@@ -154,6 +155,14 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+// 新增：页面容器样式，确保整个页面固定高度
+.page-container {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 .vote-list{
   background: #135690;
   padding: 20rpx;
@@ -209,10 +218,16 @@ onMounted(() => {
 }
 
 .index {
+  flex: 1; // 占据剩余空间
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // 防止整个页面滚动
+  
   .banner {
     position: relative;
     height: 300rpx;
     overflow: hidden;
+    flex-shrink: 0; // 不缩放
 
     .banner-bg {
       position: absolute;
@@ -282,20 +297,41 @@ onMounted(() => {
   }
 }
 
+.search{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 13rpx;
+  background: url(../../../assets/icon/search.webp) no-repeat center/cover;
+}
+.huo{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  background: url(../../../assets/icon/huo.webp) no-repeat center/cover;
+}
+.clear{
+  width: 32rpx;
+  height: 32rpx;
+  background: url(../../../assets/icon/close.webp) no-repeat center/cover;
+}
 .vote-content_content {
   background: linear-gradient(180deg, #DCEDFF 0%, rgba(220, 237, 255, 0.10) 100%) , url(../../../assets/img/footer.webp) no-repeat center/cover;
-  height: calc(100vh - 300rpx - 100rpx); // 整个页面高度 - banner高度 - vote-list高度
+  flex: 1; // 占据剩余空间
   padding: 20rpx;
   position: relative;
-  overflow-y: auto;
-
+  overflow: hidden; // 移除外层滚动
+  padding-bottom: 110rpx;
+  display: flex;
+  flex-direction: column; // 使用 flex 布局
+  
   .search-container {
     margin-bottom: 25rpx;
+    flex-shrink: 0; // 搜索栏不缩放
     
     .search-bar {
       background: #ffffff;
       border-radius: 80rpx;
-      padding: 8rpx 30rpx;
+      padding: 12rpx 30rpx;
       display: flex;
       align-items: center;
       
@@ -326,7 +362,11 @@ onMounted(() => {
     display: flex;
     gap: 20rpx;
     flex-wrap: wrap;
-    
+    flex: 1; // 占据剩余空间
+    overflow-y: auto; // 只让作品容器滚动
+    padding-right: 10rpx; // 为滚动条留出空间
+    align-content: flex-start; // 内容从顶部开始排列
+    padding-bottom: 60rpx;
     .work-card {
       flex: 1;
       min-width: 300rpx;

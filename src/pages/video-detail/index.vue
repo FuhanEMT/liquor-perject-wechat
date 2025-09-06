@@ -8,22 +8,8 @@
       <view class="header-center">
         <text class="header-title">投票</text>
       </view>
-      <view class="header-right">
-        <view class="toggle-container">
-          <view class="toggle-section toggle-left">
-            <view class="dots">
-              <view class="dot dot-1"></view>
-              <view class="dot dot-2"></view>
-              <view class="dot dot-3"></view>
-            </view>
-          </view>
-          <view class="toggle-divider"></view>
-          <view class="toggle-section toggle-right active">
-            <view class="circle">
-              <view class="inner-dot"></view>
-            </view>
-          </view>
-        </view>
+      <view class="header-right" style="width: 90rpx;">
+        
       </view>
     </view>
     
@@ -71,7 +57,7 @@
         <view class="button-row">
           <view class="share-button">
             <image class="share-icon" src="../../../assets/icon/fenx.webp" mode="aspectFit" />
-            <text class="share-text">分享</text>
+            <view class="share-text" @click="handleShareCavas" style="position: relative;z-index: 999;">分享</view>
           </view>
           <view class="vote-button">
             <text class="vote-text">给TA投票</text>
@@ -112,6 +98,20 @@ onMounted(() => {
     loadVideoDetail(options.id)
   }
 })
+
+// 生成海报
+const handleShareCavas = () => {
+  console.log('handleShareCavas')
+  Taro.downloadFile({
+    url: 'https://res.wx.qq.com/wxdoc/dist/assets/img/demo.ef5c5bef.jpg',
+    entrancePath: '/pages/video-detail/index',
+    success: (res) => {
+      Taro.showShareImageMenu({
+        path: res.tempFilePath
+      })
+    }
+  })
+}
 
 const loadVideoDetail = (id) => {
   // 这里应该调用API获取视频详情

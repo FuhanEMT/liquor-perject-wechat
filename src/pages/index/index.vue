@@ -14,18 +14,18 @@
           <view class="stats-card__grid">
             <view class="cell">
               <text class="cell-label">比赛剩余时间</text>
-              <view class="cell-value"><text class="num">18</text><text class="unit"> 天 </text><text
-                  class="num">22</text><text class="unit"> 小时</text></view>
+              <view class="cell-value"><text class="num">{{ handleDateDay(state.eventInfo.countdown) }}</text><text class="unit"> 天 </text><text
+                  class="num">{{ handleDateHour(state.eventInfo.countdown) }}</text><text class="unit"> 小时</text></view>
             </view>
 
             <view class="cell">
               <text class="cell-label">比赛报名人数</text>
-              <text class="cell-value"><text class="num">3305</text></text>
+              <text class="cell-value"><text class="num">{{ state.eventInfo.signUpCount }}</text></text>
             </view>
 
             <view class="cell">
               <text class="cell-label">上传作品数量</text>
-              <text class="cell-value"><text class="num">1245</text></text>
+              <text class="cell-value"><text class="num">{{ state.eventInfo.upCount }}</text></text>
             </view>
           </view>
           <view class="stats-card__upload">
@@ -33,7 +33,7 @@
               <image style="width: 30rpx;height: 30rpx;margin-right: 20rpx;" src="../../../assets/icon/upload.png" mode="aspectFit" />
               <text class="upload-text">上传作品</text>
             </view>
-            <text class="deadline">(截止于:2025年9月29日 00:00)</text>
+            <text class="deadline">(截止于{{ handleTimeDateString(state.eventInfo.countdown) }})</text>
           </view>
         </view>
       </view>
@@ -382,11 +382,110 @@
   </view>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
 import Taro from '@tarojs/taro'
+import { onMounted , reactive} from 'vue'
+import { axios } from 'taro-axios'
 
 const videStatus = ref(false)
+// 添加状态变量
+const state = ref({
+  eventInfo: {
+    countdown: '' as string,
+  } as any,
+  remainingDays: 0 // 存储剩余天数
+})
+
+onMounted(async () => {
+  console.log(1)
+  await axios
+  .get('https://svideo.gzxijiu.com/system/miniapp/event/info')
+  .then(res => {
+    state.value.eventInfo = res.data.data
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
+// 计算剩余天数的方法
+const handleDateDay = (endTime) => {
+  if (!endTime) return 0
+  
+  // 将结束时间转换为Date对象
+  const endDate = new Date(endTime)
+  const currentDate = new Date()
+  
+  // 检查日期是否有效
+  if (isNaN(endDate.getTime())) {
+    return 0
+  }
+  
+  // 计算时间差（毫秒）
+  const timeDiff = endDate.getTime() - currentDate.getTime()
+  
+  // 如果时间已过，返回0
+  if (timeDiff <= 0) {
+    state.value.remainingDays = 0
+    return 0
+  }
+  
+  // 转换为天数
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+  
+  // 保存到状态变量中
+  state.value.remainingDays = days
+  
+  return days
+}
+
+// 计算剩余小时的方法（如果需要的话）
+const handleDateHour = (endTime) => {
+  if (!endTime) return 0
+  
+  const endDate = new Date(endTime)
+  const currentDate = new Date()
+  
+  if (isNaN(endDate.getTime())) {
+    return 0
+  }
+  
+  const timeDiff = endDate.getTime() - currentDate.getTime()
+  
+  if (timeDiff <= 0) {
+    return 0
+  }
+  
+  // 计算剩余小时（去除天数后的小时数）
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  
+  return hours
+}
+
+// 原有的时间格式化方法
+const handleTimeDateString = (time) => {
+  if(!time) return '-'
+  
+  // 将时间字符串转换为Date对象
+  const date = new Date(time)
+  
+  // 检查日期是否有效
+  if (isNaN(date.getTime())) {
+    return '-'
+  }
+  
+  // 获取年月日时分秒
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+  
+  // 返回格式化后的时间字符串
+  return `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`
+}
 
 const toggleVideoPlay = () => {
   console.log(1)
